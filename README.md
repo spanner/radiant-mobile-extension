@@ -1,6 +1,6 @@
 # Mobile
 
-This very simple extension allows you to offer a mobile version of your radiant site.
+This very simple extension allows you to offer a cache-friendly mobile version of your radiant site.
 
 ## Basic usage
 
@@ -8,7 +8,7 @@ This very simple extension allows you to offer a mobile version of your radiant 
 
 2. Set 'mobile.redirect?' to true and put the full hostname in 'mobile.hostname' if you want to bounce iphone and other mobile users to your mobile site when they first arrive.
 
-3. Provide a link back to your main site by appending ?mobile=false. The effect is to block the redirect on that request and set a cookie that will carry on blocking it for future requests.
+3. Provide a link back to your main site by appending ?nomobile. We will skip the redirect on that request and set a session flag that will carry on blocking it for future requests.
 
 4. Use the radius tags `<r:if_mobile_>` and `<r:unless_mobile>` to make layout or content decisions based on whether this is a request for the mobile site.
 
@@ -21,11 +21,11 @@ This very simple extension allows you to offer a mobile version of your radiant 
 ### Why not just detect mobile devices?
 
 * We can give visitors more control this way.
-* We can't deliver variant pages through the cache: different versions of the same page must have different URIs.
+* We can't deliver variant pages through the cache: different versions of the same page must have different addresses.
 
 ## Building a mobile site
 
-It's up to you how you want the mobile context to affect your site delivery. Here are some likely scenarios:
+It's up to you how broadly the mobile context affects your site delivery. Here are some likely scenarios:
 
 ### Omitted content
 
