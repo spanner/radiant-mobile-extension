@@ -26,6 +26,6 @@ module MobilePage
     <pre><code><r:unless_mobile>...</r:unless_mobile></code></pre>
   }
   tag 'unless_mobile' do |tag|
-    tag.expand if mobile?
+    tag.expand unless mobile?
   end
 end

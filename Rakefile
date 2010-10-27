@@ -3,7 +3,7 @@ begin
   Jeweler::Tasks.new do |gem|
     gem.name = "radiant-mobile-extension"
     gem.summary = %Q{Mobile Extension for Radiant CMS}
-    gem.description = %Q{Describe your extension here}
+    gem.description = %Q{An easy, flexible, cache-friendly mobile version of your site}
     gem.email = "will@spanner.org"
     gem.homepage = "http://github.com/spanner/radiant-mobile-extension"
     gem.authors = ["spanner"]

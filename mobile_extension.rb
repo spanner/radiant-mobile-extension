@@ -2,8 +2,8 @@
 # require_dependency 'application_controller'
 
 class MobileExtension < Radiant::Extension
-  version "1.0"
-  description "Defines a mobile site context and corresponding if_mobile radius tags"
+  version "0.1.1"
+  description "An easy, cache-friendly mobile version of your site"
   url "http://github.com/spanner/radiant-mobile-extension"
   
   def activate
