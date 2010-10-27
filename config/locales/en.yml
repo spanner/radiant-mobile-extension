@@ -1,0 +1,9 @@
+---
+en:
+  mobile: "Mobile"
+  mobile_site: "Mobile site"
+  config:
+    mobile:
+      redirect?: "Redirect mobile users"
+      host: "Mobile site host"
+      
