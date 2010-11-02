@@ -32,7 +32,9 @@ module MobileSiteController
       session[:nomobile] = true
     end
     if @config['mobile.redirect?'] && @config['mobile.host'] && !session[:nomobile] && !mobile? && mobile_device?
-      redirect_to request.protocol + @config['mobile.host'] + request.path_parameters['url']
+      uri = request.path_parameters['url']
+      uri = uri.join('/') if uri.respond_to? :join
+      redirect_to request.protocol + @config['mobile.host'] + uri
     end
   end
 
