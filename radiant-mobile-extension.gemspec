@@ -5,19 +5,21 @@
 
 Gem::Specification.new do |s|
   s.name = %q{radiant-mobile-extension}
-  s.version = "0.1.0"
+  s.version = "0.1.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["spanner"]
-  s.date = %q{2010-10-27}
+  s.date = %q{2010-11-02}
   s.description = %q{An easy, flexible, cache-friendly mobile version of your site}
   s.email = %q{will@spanner.org}
   s.extra_rdoc_files = [
     "README.md"
   ]
   s.files = [
-    "README.md",
+    ".gitignore",
+     "README.md",
      "Rakefile",
+     "VERSION",
      "app/views/admin/configuration/_edit_mobile.html.haml",
      "app/views/admin/configuration/_mobile.html.haml",
      "config/initializers/radiant_config.rb",
@@ -30,6 +32,7 @@ Gem::Specification.new do |s|
      "lib/mobile_site_controller.rb",
      "lib/tasks/mobile_extension_tasks.rake",
      "mobile_extension.rb",
+     "radiant-mobile-extension.gemspec",
      "spec/controllers/mobile_site_controller_spec.rb",
      "spec/models/mobile_page_spec.rb",
      "spec/spec.opts",

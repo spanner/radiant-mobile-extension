@@ -1,12 +1,12 @@
 module MobileSiteController
-  # appraoch and UA strings borrowed from mobile-fu
+  # approach and UA strings borrowed from mobile-fu
   # http://github.com/brendanlim/mobile-fu/tree/master
-  MOBILE_USER_AGENTS =  'palm|blackberry|nokia|phone|midp|mobi|symbian|chtml|ericsson|minimo|' +
-                      'audiovox|motorola|samsung|telit|upg1|windows ce|ucweb|astel|plucker|' +
-                      'x320|x240|j2me|sgh|portable|sprint|docomo|kddi|softbank|android|mmp|' +
-                      'pdxgw|netfront|xiino|vodafone|portalmmm|sagem|mot-|sie-|ipod|up\\.b|' +
-                      'webos|amoi|novarra|cdm|alcatel|pocket|ipad|iphone|mobileexplorer|' +
-                      'mobile'
+  MOBILE_USER_AGENTS = 'palm|blackberry|nokia|phone|midp|mobi|symbian|chtml|ericsson|minimo|' +
+                       'audiovox|motorola|samsung|telit|upg1|windows ce|ucweb|astel|plucker|' +
+                       'x320|x240|j2me|sgh|portable|sprint|docomo|kddi|softbank|android|mmp|' +
+                       'pdxgw|netfront|xiino|vodafone|portalmmm|sagem|mot-|sie-|ipod|up\\.b|' +
+                       'webos|amoi|novarra|cdm|alcatel|pocket|ipad|iphone|mobileexplorer|' +
+                       'mobile'
 
   def mobile?
     if mobile_host = @config['mobile.host']
