@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{radiant-mobile-extension}
-  s.version = "0.1.2"
+  s.version = "0.1.4"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["spanner"]
-  s.date = %q{2010-11-02}
+  s.date = %q{2010-11-10}
   s.description = %q{An easy, flexible, cache-friendly mobile version of your site}
   s.email = %q{will@spanner.org}
   s.extra_rdoc_files = [
