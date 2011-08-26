@@ -9,7 +9,7 @@ module MobileSiteController
                        'mobile'
 
   def mobile?
-    if mobile_host = @config['mobile.host']
+    unless mobile_host = @config['mobile.host'].blank?
       request.host == mobile_host
     else
       request.host =~ /^m\./
