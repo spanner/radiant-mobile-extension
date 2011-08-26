@@ -1,4 +1,3 @@
-Radiant.config do |config|
-  config.define "mobile.redirect?", :default => true
-  config.define "mobile.host"
-end
+config_hash = Radiant::Config.to_hash
+Radiant::Config["mobile.redirect?"] = true unless config_hash.has_key?("mobile.redirect?")
+Radiant::Config["mobile.host"] = nil unless config_hash.has_key?("mobile.host")

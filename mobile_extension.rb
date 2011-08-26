@@ -5,12 +5,11 @@ class MobileExtension < Radiant::Extension
   version "0.1.4"
   description "An easy, cache-friendly mobile version of your site"
   url "http://github.com/spanner/radiant-mobile-extension"
-  
+
   def activate
+    require 'config/initializers/radiant_config'
+
     Page.send :include, MobilePage
     SiteController.send :include, MobileSiteController
-    
-    admin.configuration.show.add :config, "mobile", :after => "defaults"
-    admin.configuration.edit.add :form, "edit_mobile", :after => "edit_defaults"
   end
 end

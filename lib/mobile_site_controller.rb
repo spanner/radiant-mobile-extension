@@ -9,7 +9,7 @@ module MobileSiteController
                        'mobile'
 
   def mobile?
-    unless mobile_host = @config['mobile.host'].blank?
+    unless mobile_host = Radiant::Config['mobile.host'].blank?
       request.host == mobile_host
     else
       request.host =~ /^m\./
@@ -31,10 +31,10 @@ module MobileSiteController
     elsif params['url'] =~ /\?nomobile/
       session[:nomobile] = true
     end
-    if @config['mobile.redirect?'] && @config['mobile.host'] && !session[:nomobile] && !mobile? && mobile_device?
+    if Radiant::Config['mobile.redirect?'] && Radiant::Config['mobile.host'] && !session[:nomobile] && !mobile? && mobile_device?
       uri = request.path_parameters['url']
       uri = uri.join('/') if uri.respond_to? :join
-      redirect_to request.protocol + @config['mobile.host'] + uri
+      redirect_to request.protocol + Radiant::Config['mobile.host'] + uri
     end
   end
 
@@ -44,5 +44,4 @@ module MobileSiteController
       alias_method_chain :process_page, :mobile
     end
   end
-
 end
