@@ -37,7 +37,7 @@ module MobileSiteController
   # context to support presentation choices in radius tags.
   #
   def process_page_with_mobile(page)
-    page.mobile = mobile? || web_view?
+    page.mobile = mobile?
     process_page_without_mobile(page)
   end
 
