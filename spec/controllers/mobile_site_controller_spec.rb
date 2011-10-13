@@ -12,7 +12,7 @@ describe SiteController do
   
   describe "responding to a mobile-site request" do
     before do
-      request.stub!(:host).and_return(@host)
+      request.stub!(:host).and_return("m.test.host")
       controller.stub!(:find_page).and_return(@page)
     end
 
@@ -68,5 +68,4 @@ describe SiteController do
       
     end
   end
-  
 end

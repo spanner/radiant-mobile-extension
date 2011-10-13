@@ -1,15 +1,17 @@
 module MobilePage
   attr_accessor :mobile
 
+  # The extended site controller calls page.mobile = true if we are in a mobile context
+  #
   def mobile?
     !!@mobile
   end
-  
+
   include Radiant::Taggable
 
   desc %{
     Expands if the url of the current request matches the host name defined in Radiant::Config['mobile.host'].
-    (or if there is no such definition, if it begins with m.)
+    (or if there is no such definition, if the domain begins with m.)
 
     *Usage:*
     <pre><code><r:if_mobile>...</r:if_mobile></code></pre>
@@ -28,4 +30,5 @@ module MobilePage
   tag 'unless_mobile' do |tag|
     tag.expand unless mobile?
   end
+
 end
