@@ -2,9 +2,9 @@
 # require_dependency 'application_controller'
 
 class MobileExtension < Radiant::Extension
-  version "0.1.4"
-  description "An easy, cache-friendly mobile version of your site"
-  url "http://github.com/spanner/radiant-mobile-extension"
+  version RadiantMobileExtension::VERSION
+  description RadiantMobileExtension::DESCRIPTION
+  url RadiantMobileExtension::URL
   
   def activate
     Page.send :include, MobilePage
