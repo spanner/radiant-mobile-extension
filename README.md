@@ -16,6 +16,25 @@ This very simple extension allows you to offer a cache-friendly mobile version o
 
 Any request that whose address begins 'app.', or which matches the configured 'app.host' is considered to be a request from a smartphone app for a web view. Such requests will set the mobile flag and will also set an app flag, so you can use an additional `<r:if_app>` radius tag to distinguish such requests from normal mobile phone usage.
 
+## Configuration
+
+You can set configuration entries to determine site addresses:
+
+* `mobile.host` -> fully-specified mobile host name, eg m.spanner.org
+* `app.host` -> fully-specified app host name
+
+and to define the user-agent fragments that identify mobile (and non-mobile) devices:
+
+* `mobile.ua.positives` -> comma-separated list of mobile UA markers like 'iphone,android,etc'
+* `mobile.ua.negatives` -> comma-separated list of non-mobile UA markers like 'ipad'
+* `mobile.ua.required` -> comma-separated list of UA markers that must be present to confirm mobileness
+
+The logic of mobile device detection is this:
+
+	match any positive && not match any negatives && match any required
+
+which allows us to pick a path through the messy and regrettable business of browser-sniffing with reasonable accuracy.
+
 ## Possibly AQ
 
 ### Why not just set :format (or use mobile-fu)?

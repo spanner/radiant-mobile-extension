@@ -4,16 +4,6 @@ module MobileSiteController
   # we can redirect to the corresponding page in a mobile site, and if we are on the mobile
   # site we set a flag on the page that radius tags can use to select content.
   
-  
-  # approach and UA strings borrowed from mobile-fu
-  # http://github.com/brendanlim/mobile-fu/tree/master
-  MOBILE_USER_AGENTS = 'palm|blackberry|nokia|phone|midp|mobi|symbian|chtml|ericsson|minimo|' +
-                       'audiovox|motorola|samsung|telit|upg1|windows ce|ucweb|astel|plucker|' +
-                       'x320|x240|j2me|sgh|portable|sprint|docomo|kddi|softbank|android|mmp|' +
-                       'pdxgw|netfront|xiino|vodafone|portalmmm|sagem|mot-|sie-|ipod|up\\.b|' +
-                       'webos|amoi|novarra|cdm|alcatel|pocket|iphone|mobileexplorer|' +
-                       'mobile'
-
   # Returns true if the requested host matches the defined mobile host
   # (or in the absence of such a definition, if the host begins m.)
   #
@@ -40,11 +30,32 @@ module MobileSiteController
     !!match
   end
 
-  # Returns true if the request comes from a mobile device
-  # (based on the supplied user-agent string)
+  # Returns true if the request comes from a mobile device (based on the supplied user-agent string)
   #
   def mobile_device?
-    request.user_agent.to_s.downcase =~ Regexp.new(MobileSiteController::MOBILE_USER_AGENTS)
+    ua = request.user_agent.to_s.downcase
+    ua =~ Regexp.new(positive_markers.join('|')) && ua =~ Regexp.new(required_markers.join('|')) && ua !~ Regexp.new(negative_markers.join('|'))
+  end
+  
+  # Returns the list of string fragments whose presence indicates that this is a mobile device.
+  # The default list (and the approach) is borrowed from mobile-fu: https://github.com/brendanlim/mobile-fu/blob/master/lib/mobile_fu.rb
+  #
+  def positive_markers
+    @positive_ua_markers ||= Radiant.config['mobile.ua.positive'].split(/,\s*/)
+  end
+  
+  # Returns the list of string fragments whose presence indicates that this is a tablet and should not be treated as a mobile device.
+  # eg. Ipad UA includes 'mobile' (which in this context is a false positive) and also 'ipad' (which allows us to eliminate it).
+  #
+  def negative_markers
+    @negative_ua_markers ||= Radiant.config['mobile.ua.negative'].split(/,\s*/)
+  end
+  
+  # Returns the list of string fragments that must be present or this is not a mobile device.
+  # eg. android tablet UA includes 'android' but not 'mobile', so we require the mobile flag.
+  #
+  def required_markers
+    @required_ua_markers ||= Radiant.config['mobile.ua.required'].split(/,\s*/)
   end
 
   # Extends the process_page method to place a 'mobile' and 'app' flags in the page-rendering 
