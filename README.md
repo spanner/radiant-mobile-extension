@@ -12,6 +12,10 @@ This very simple extension allows you to offer a cache-friendly mobile version o
 
 4. Use the radius tags `<r:if_mobile_>` and `<r:unless_mobile>` to make layout or content decisions based on whether this is a request for the mobile site.
 
+## Web views
+
+Any request that whose address begins 'app.', or which matches the configured 'app.host' is considered to be a request from a smartphone app for a web view. Such requests will set the mobile flag and will also set an app flag, so you can use an additional `<r:if_app>` radius tag to distinguish such requests from normal mobile phone usage.
+
 ## Possibly AQ
 
 ### Why not just set :format (or use mobile-fu)?
@@ -77,7 +81,7 @@ With the `layouts` or `nested_layouts` extension you could create a simple layou
 
 ## Status
 
-Brand new and not well tested, but there's not much to it.
+This has been in use for a couple of years without problems. The app-view part is new but ordinary: you should be able to use this extension with confidence.
 
 ## Bugs and comments
 

@@ -11,4 +11,11 @@ describe Page do
     page.mobile.should be_true
     page.mobile?.should be_true
   end
+
+  it "should get and set an app? attribute" do
+    page.app?.should be_false
+    lambda{ page.app = true }.should_not raise_error
+    page.app.should be_true
+    page.app?.should be_true
+  end
 end

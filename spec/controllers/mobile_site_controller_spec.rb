@@ -25,6 +25,23 @@ describe SiteController do
       get :show_page, :url => @page.url
     end
   end
+
+  describe "responding to an app-site request" do
+    before do
+      request.stub!(:host).and_return("app.test.host")
+      controller.stub!(:find_page).and_return(@page)
+    end
+
+    it "should notice that this is a request for the app site" do
+      controller.app?.should be_true
+    end
+
+    it "should set both the mobile and app flags on a processed page to true" do
+      @page.should_receive(:mobile=).with(true)
+      @page.should_receive(:app=).with(true)
+      get :show_page, :url => @page.url
+    end
+  end
   
   describe "responding to a standard-site request" do
     before do

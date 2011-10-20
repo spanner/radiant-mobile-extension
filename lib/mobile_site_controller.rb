@@ -19,11 +19,25 @@ module MobileSiteController
   #
   def mobile?
     mobile_host = Radiant.config['mobile.host']
-    unless mobile_host.blank?
+    match = unless mobile_host.blank?
       request.host == mobile_host
     else
       request.host =~ /^m\./
     end
+    !!match
+  end
+
+  # Returns true if the requested host matches the defined app host
+  # (or in the absence of such a definition, if the host begins app.)
+  #
+  def app?
+    app_host = Radiant.config['app.host']
+    match = unless app_host.blank?
+      request.host == app_host
+    else
+      request.host =~ /^app\./
+    end
+    !!match
   end
 
   # Returns true if the request comes from a mobile device
@@ -33,11 +47,12 @@ module MobileSiteController
     request.user_agent.to_s.downcase =~ Regexp.new(MobileSiteController::MOBILE_USER_AGENTS)
   end
 
-  # Extends the process_page method to place a 'mobile' flag in the page-rendering 
+  # Extends the process_page method to place a 'mobile' and 'app' flags in the page-rendering 
   # context to support presentation choices in radius tags.
   #
   def process_page_with_mobile(page)
-    page.mobile = mobile?
+    page.app = app?
+    page.mobile = app? || mobile?
     process_page_without_mobile(page)
   end
 

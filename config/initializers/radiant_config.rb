@@ -1,6 +1,5 @@
 Radiant.config do |config|
-  config.namespace('mobile') do |mob|
-    mob.define 'host', :allow_blank => true
-    mob.define 'redirect?', :default => true
-  end
+  config.define 'app.host', :allow_blank => true
+  config.define 'mobile.host', :allow_blank => true
+  config.define 'mobile.redirect?', :default => true
 end 
