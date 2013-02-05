@@ -9,7 +9,7 @@ module MobileSiteController
                        'mobile'
 
   def mobile?
-    unless mobile_host = Radiant::Config['mobile.host'].blank?
+    unless (mobile_host = Radiant::Config['mobile.host']).blank?
       request.host == mobile_host
     else
       request.host =~ /^m\./
